@@ -155,6 +155,7 @@ describe 'graphite::web' do
       it { should contain_exec('graphite-manage syncdb --noinput') }
       it { should contain_file('/etc/graphite-web') }
       it { should contain_file('/etc/graphite-web/dashboard.conf') }
+      it { should contain_file('/etc/httpd/conf.d/graphite-web.conf').with_ensure('absent') }
       it { should contain_package('graphite-web') }
     end
   end
