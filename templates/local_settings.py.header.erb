@@ -1,0 +1,42 @@
+SECRET_KEY = '<%= @secret_key %>'
+<% if @allowed_hosts -%>
+ALLOWED_HOSTS = ['<%= @allowed_hosts.join(%q{', '}) %>']
+<% end -%>
+<% if @time_zone -%>
+TIME_ZONE = '<%= @time_zone %>'
+<% end -%>
+<% if @documentation_url -%>
+DOCUMENTATION_URL = '<%= @documentation_url %>'
+<% end -%>
+<% unless @log_rendering_performance.nil? -%>
+LOG_RENDERING_PERFORMANCE = <%= @log_rendering_performance ? 'True' : 'False' %>
+<% end -%>
+<% unless @log_cache_performance.nil? -%>
+LOG_CACHE_PERFORMANCE = <%= @log_cache_performance ? 'True' : 'False' %>
+<% end -%>
+<% unless @log_metric_access.nil? -%>
+LOG_METRIC_ACCESS = <%= @log_metric_access ? 'True' : 'False' %>
+<% end -%>
+<% unless @debug.nil? -%>
+DEBUG = <%= @debug ? 'True' : 'False' %>
+<% end -%>
+<% if @flushrrdcached -%>
+FLUSHRRDCACHED = '<%= @flushrrdcached %>'
+<% end -%>
+<% if @memcache_hosts -%>
+MEMCACHE_HOSTS = ['<%= @memcache_hosts.map { |x| "#{x['host']}:#{x['port']}" }.join(%q{', '}) %>']
+<% end -%>
+<% if @default_cache_duration -%>
+DEFAULT_CACHE_DURATION = <%= @default_cache_duration %>
+<% end -%>
+GRAPHITE_ROOT = '<%= @graphite_root %>'
+CONF_DIR = '<%= @conf_dir %>'
+STORAGE_DIR = '<%= @storage_dir %>'
+CONTENT_DIR = '<%= @graphite_root %>/webapp/content'
+DASHBOARD_CONF = '<%= @conf_dir %>/dashboard.conf'
+GRAPHTEMPLATES_CONF = '<%= @conf_dir %>/graphTemplates.conf'
+WHISPER_DIR = '<%= @whisper_dir %>'
+RRD_DIR = '<%= @rrd_dir %>'
+DATA_DIRS = [WHISPER_DIR, RRD_DIR]
+LOG_DIR = '<%= @log_dir %>'
+INDEX_FILE = '<%= @storage_dir %>/index'

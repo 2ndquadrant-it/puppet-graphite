@@ -1,0 +1,10 @@
+cache:
+  type: redis
+  redis_host: <%= @host %>
+  redis_port: <%= @port %>
+<% if @password -%>
+  redis_password: <%= @password %>
+<% end -%>
+  redis_db: <%= @database %>
+  default_timeout: <%= @timeout %>
+  key_prefix: '<%= @key_prefix %>'

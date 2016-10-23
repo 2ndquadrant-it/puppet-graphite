@@ -1,0 +1,13 @@
+USE_LDAP_AUTH = True
+LDAP_URI = '<%= @uri %>'
+LDAP_SEARCH_BASE = '<%= @search_base %>'
+LDAP_BASE_USER = '<%= @bind_dn %>'
+LDAP_BASE_PASS = '<%= @bind_password %>'
+LDAP_USER_QUERY = '<%= @search_filter %>'
+<% if @ldap_options -%>
+
+import ldap
+<%   @ldap_options.each do |k,v| -%>
+ldap.set_option(<%= k %>, <%= v %>)
+<%   end -%>
+<% end -%>

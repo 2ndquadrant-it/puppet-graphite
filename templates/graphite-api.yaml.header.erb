@@ -1,0 +1,39 @@
+---
+search_index: <%= @state_dir %>/index
+finders:
+  - graphite_api.finders.whisper.WhisperFinder
+functions:
+  - graphite_api.functions.SeriesFunctions
+  - graphite_api.functions.PieFunctions
+whisper:
+  directories:
+    - <%= @whisper_dir %>
+<% if @time_zone -%>
+time_zone: <%= @time_zone %>
+<% end -%>
+<% if @carbon_hosts -%>
+carbon:
+  hosts:
+<%   @carbon_hosts.each do |x| -%>
+    - <%= x['host'] %>:<%= x['port'] %><%= ":#{x['instance']}" if x.include?('instance') %>
+<%   end -%>
+<%   if @carbon_timeout -%>
+  timeout: <%= @carbon_timeout %>
+<%   end -%>
+<%   if @carbon_retry_delay -%>
+  retry_delay: <%= @carbon_retry_delay %>
+<%   end -%>
+<%#  FIXME hashing_keyfunc -%>
+<%   if @carbon_metric_prefix -%>
+  carbon_prefix: <%= @carbon_metric_prefix %>
+<%   end -%>
+<%   if @replication_factor -%>
+  replication_factor: <%= @replication_factor %>
+<%   end -%>
+<% end -%>
+<% if @allowed_origins -%>
+allowed_origins:
+<%   @allowed_origins.each do |x| -%>
+  - <%= x %>
+<%   end -%>
+<% end -%>

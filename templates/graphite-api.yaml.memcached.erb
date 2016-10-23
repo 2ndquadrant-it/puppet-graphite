@@ -1,0 +1,8 @@
+cache:
+  type: memcached
+  memcached_servers:
+<% @servers.each do |x| -%>
+    - '<%= x['host'] %>:<%= x['port'] %>'
+<% end -%>
+  default_timeout: <%= @timeout %>
+  key_prefix: '<%= @key_prefix %>'

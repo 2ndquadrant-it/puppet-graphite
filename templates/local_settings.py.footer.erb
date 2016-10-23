@@ -1,0 +1,58 @@
+DATABASES = {
+<% @databases.each_with_index do |(k,v),i| -%>
+  '<%= k %>': {
+    'NAME': '<%= v['name'] %>',
+    'ENGINE': '<%= v['engine'] %>',
+    'USER': '<%= v['user'] or '' %>',
+    'PASSWORD': '<%= v['password'] or '' %>',
+    'HOST': '<%= v['host'] or '' %>',
+    'PORT': '<%= v['port'] or '' %>'
+<%   if i < @databases.size - 1 -%>
+  },
+<%   else -%>
+  }
+<%   end -%>
+<% end -%>
+}
+<% if @cluster_servers -%>
+CLUSTER_SERVERS = ['<%= @cluster_servers.map { |x| x['host'] + (x.include?('port') ? ":#{x['port']}" : '') }.join(%q{', '}) %>']
+<% end -%>
+<% if @remote_store_fetch_timeout -%>
+REMOTE_STORE_FETCH_TIMEOUT = <%= @remote_store_fetch_timeout %>
+<% end -%>
+<% if @remote_store_find_timeout -%>
+REMOTE_STORE_FIND_TIMEOUT = <%= @remote_store_find_timeout %>
+<% end -%>
+<% if @remote_store_retry_delay -%>
+REMOTE_STORE_RETRY_DELAY = <%= @remote_store_retry_delay %>
+<% end -%>
+<% unless @remote_store_use_post.nil? -%>
+REMOTE_STORE_USE_POST = <%= @remote_store_use_post ? 'True' : 'False' %>
+<% end -%>
+<% if @remote_find_cache_duration -%>
+REMOTE_FIND_CACHE_DURATION = <%= @remote_find_cache_duration %>
+<% end -%>
+<% unless @remote_prefetch_data.nil? -%>
+REMOTE_PREFETCH_DATA = <%= @remote_prefetch_data ? 'True' : 'False' %>
+<% end -%>
+<% unless @remote_store_merge_results.nil? -%>
+REMOTE_STORE_MERGE_RESULTS = <%= @remote_store_merge_results ? 'True' : 'False' %>
+<% end -%>
+<% unless @remote_rendering.nil? -%>
+REMOTE_RENDERING = <%= @remote_rendering ? 'True' : 'False' %>
+<% end -%>
+<% if @rendering_hosts -%>
+RENDERING_HOSTS = ['<%= @rendering_hosts.map { |x| x['host'] + (x.include?('port') ? ":#{x['port']}" : '') }.join(%q{', '}) %>']
+<% end -%>
+<% if @remote_render_connect_timeout -%>
+REMOTE_RENDER_CONNECT_TIMEOUT = <%= @remote_render_connect_timeout %>
+<% end -%>
+<% if @carbonlink_hosts -%>
+CARBONLINK_HOSTS = ['<%= @carbonlink_hosts.map { |x| "#{x['host']}:#{x['port']}" + (x.include?('instance') ? ":#{x['instance']}" : '') }.join(%q{', '}) %>']
+<% end -%>
+<% if @carbonlink_timeout -%>
+CARBONLINK_TIMEOUT = <%= @carbonlink_timeout %>
+<% end -%>
+<% unless @carbonlink_query_bulk.nil? -%>
+CARBONLINK_QUERY_BULK = <%= @carbonlink_query_bulk ? 'True' : 'False' %>
+<% end -%>
