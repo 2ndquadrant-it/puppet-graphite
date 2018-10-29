@@ -44,3 +44,6 @@ RRD_DIR = '<%= @rrd_dir %>'
 DATA_DIRS = [WHISPER_DIR, RRD_DIR]
 LOG_DIR = '<%= @log_dir %>'
 INDEX_FILE = '<%= @storage_dir %>/index'
+<% unless @use_remote_user_authentication.nil? -%>
+USE_REMOTE_USER_AUTHENTICATION = <%= @use_remote_user_authentication ? 'True' : 'False' %>
+<% end -%>

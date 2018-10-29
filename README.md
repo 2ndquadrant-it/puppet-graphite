@@ -346,6 +346,10 @@ Maps to the `STORAGE_DIR` setting. Defaults to `/var/lib/carbon`.
 
 Maps to the `TIME_ZONE` setting.
 
+##### `use_remote_user_authentication`
+
+Maps to the `USE_REMOTE_USER_AUTHENTICATION` setting.
+
 ##### `whisper_dir`
 
 Maps to the `WHISPER_DIR` setting. Defaults to `${storage_dir}/whisper`.
