@@ -32,7 +32,11 @@ DEFAULT_CACHE_DURATION = <%= @default_cache_duration %>
 GRAPHITE_ROOT = '<%= @graphite_root %>'
 CONF_DIR = '<%= @conf_dir %>'
 STORAGE_DIR = '<%= @storage_dir %>'
+<% if @osfamily == 'Debian' -%>
+STATIC_ROOT = '<%= @graphite_root %>/static'
+<% else -%>
 CONTENT_DIR = '<%= @graphite_root %>/webapp/content'
+<% end -%>
 DASHBOARD_CONF = '<%= @conf_dir %>/dashboard.conf'
 GRAPHTEMPLATES_CONF = '<%= @conf_dir %>/graphTemplates.conf'
 WHISPER_DIR = '<%= @whisper_dir %>'
